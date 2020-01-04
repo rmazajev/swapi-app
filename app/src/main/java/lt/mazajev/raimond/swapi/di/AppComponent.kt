@@ -5,15 +5,16 @@ import dagger.Component
 import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
 import lt.mazajev.raimond.swapi.SwapiApp
+import lt.mazajev.raimond.swapi.api.ApiModule
 
 @ApplicationScope
 @Component(
     modules = [
         AndroidInjectionModule::class,
         AppModule::class,
-        ActivityModule::class,
         FragmentModule::class,
-        ViewModelModule::class
+        ViewModelModule::class,
+        ApiModule::class
     ]
 )
 interface AppComponent : AndroidInjector<SwapiApp> {

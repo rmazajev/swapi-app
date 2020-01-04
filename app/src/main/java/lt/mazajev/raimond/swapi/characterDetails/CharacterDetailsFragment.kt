@@ -1,21 +1,32 @@
 package lt.mazajev.raimond.swapi.characterDetails
 
-import androidx.lifecycle.ViewModelProviders
+import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import dagger.android.support.AndroidSupportInjection
 import lt.mazajev.raimond.swapi.R
+import javax.inject.Inject
 
 class CharacterDetailsFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = CharacterDetailsFragment()
-    }
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var viewModel: CharacterDetailsViewModel
+
+    override fun onAttach(context: Context) {
+        AndroidSupportInjection.inject(this)
+        super.onAttach(context)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(CharacterDetailsViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,11 +34,4 @@ class CharacterDetailsFragment : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.character_details_fragment, container, false)
     }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(CharacterDetailsViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
-
 }

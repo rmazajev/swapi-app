@@ -11,7 +11,7 @@
         android:label="charactersListFragment"
         tools:layout="@layout/characters_list_fragment">
         <action
-            android:id="@+id/action_deviceListFragment_to_deviceEditFragment"
+            android:id="@+id/action_charactersListFragment_to_characterDetailsFragment"
             app:destination="@id/characterDetailsFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"

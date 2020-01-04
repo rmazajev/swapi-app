@@ -2,6 +2,7 @@ package lt.mazajev.raimond.swapi
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import dagger.android.AndroidInjection
 
 class MainActivity : AppCompatActivity() {
 
