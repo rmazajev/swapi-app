@@ -15,12 +15,41 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <EditText
+            android:importantForAutofill="no"
+            android:visibility="@{vm.shouldShowFilterInput(vm.state) ? View.VISIBLE : View.GONE}"
+            android:hint="@string/filter_edit_text_hint"
+            android:id="@+id/filterInput"
+            android:inputType="text"
+            android:maxLength="100"
+            android:imeOptions="actionSearch"
+            android:onTextChanged="@{(text, start, before, count) -> vm.onFilterChange(text)}"
+            android:drawableStart="@android:drawable/ic_menu_search"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
         <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="15dp"
+            app:layout_constraintTop_toBottomOf="@+id/filterInput"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:id="@+id/charactersList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:data="@{vm.getData(vm.state)}"
+            android:layout_height="0dp"
+            app:data="@{vm.state.filteredCharacters}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        <TextView
+            android:visibility="@{vm.isEmpty(vm.state) ? View.VISIBLE : View.GONE}"
+            android:text="@string/empty_characters_message"
+            app:layout_constraintTop_toBottomOf="@+id/filterInput"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
         <LinearLayout
             android:id="@+id/loadingContainer"

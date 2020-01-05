@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.freetimeprojects.mijiareader.utils.BindableAdapter
+import lt.mazajev.raimond.swapi.utils.BindableAdapter
 import lt.mazajev.raimond.swapi.BR
 import lt.mazajev.raimond.swapi.charactersList.Character
 import lt.mazajev.raimond.swapi.charactersList.CharacterViewHolder

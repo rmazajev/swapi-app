@@ -1,4 +1,4 @@
-package com.freetimeprojects.mijiareader.utils
+package lt.mazajev.raimond.swapi.utils
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter

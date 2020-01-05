@@ -4,13 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.freetimeprojects.mijiareader.utils.SingleLiveEvent
+import lt.mazajev.raimond.swapi.utils.SingleLiveEvent
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import lt.mazajev.raimond.swapi.api.StarWarsApi
-import lt.mazajev.raimond.swapi.charactersList.CharactersListViewModel.State.*
 import lt.mazajev.raimond.swapi.di.CONTEXT_IO
+import java.util.*
 import javax.inject.Inject
 import javax.inject.Named
 import kotlin.coroutines.CoroutineContext
@@ -20,12 +20,12 @@ class CharactersListViewModel @Inject constructor(
     private val starWarsApi: StarWarsApi
 ) : ViewModel() {
 
-    private val _state = MutableLiveData<State>()
+    private val _state = MutableLiveData<State>().apply { value = State() }
     val state: LiveData<State> = _state
     val actionRequest = SingleLiveEvent<ActionRequest>()
 
-    private val handler = CoroutineExceptionHandler { _, _ ->
-        _state.value = FailedToLoad
+    private val handler = CoroutineExceptionHandler { _, exception ->
+        _state.value = _state.value?.copy(loadException = exception, isLoading = false)
     }
 
     init {
@@ -40,12 +40,20 @@ class CharactersListViewModel @Inject constructor(
         actionRequest.value = ActionRequest.NavigateToCharacterDetails(character)
     }
 
+    fun onFilterChange(text: CharSequence) {
+        val filterName = text.toString().toLowerCase(Locale.ENGLISH)
+        val filtered = _state.value?.characters
+            ?.filter { v -> v.name.toLowerCase(Locale.ENGLISH).indexOf(filterName) > -1 }
+            ?: emptyList()
+        _state.value = _state.value?.copy(filterName = filterName, filteredCharacters = filtered)
+    }
+
     private fun loadCharacters() {
-        if (_state.value == Loading) return
-        _state.value = Loading
+        if (_state.value?.isLoading == true) return
+        _state.value = _state.value?.copy(isLoading = true, loadException = null)
         viewModelScope.launch(handler) {
             val result = withContext(ioCoroutineContext) { starWarsApi.getCharacters() }
-            _state.value = Success(result)
+            _state.value = _state.value?.copy(characters = result, isLoading = false, filteredCharacters = result)
         }
     }
 
@@ -53,13 +61,16 @@ class CharactersListViewModel @Inject constructor(
         data class NavigateToCharacterDetails(val character: Character) : ActionRequest()
     }
 
-    sealed class State {
-        object Loading : State()
-        object FailedToLoad : State()
-        data class Success(val characters: List<Character>) : State()
-    }
+    data class State(
+        val isLoading: Boolean = false,
+        val filteredCharacters: List<Character> = emptyList(),
+        val characters: List<Character> = emptyList(),
+        val filterName: String? = null,
+        val loadException: Throwable? = null
+    )
 
-    fun State?.isLoading() = this == Loading
-    fun State?.getData() = (this as? Success)?.characters ?: emptyList()
-    fun State?.failedToLoad() = this == FailedToLoad
+    fun State.isLoading(): Boolean = isLoading
+    fun State.failedToLoad(): Boolean = loadException != null
+    fun State.isEmpty(): Boolean = filteredCharacters.isEmpty() && !isLoading && !failedToLoad()
+    fun State.shouldShowFilterInput(): Boolean = loadException == null && !isLoading
 }

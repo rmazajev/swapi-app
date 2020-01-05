@@ -58,5 +58,6 @@ class CharactersListFragment : Fragment() {
                     })
             }
         })
+
     }
 }

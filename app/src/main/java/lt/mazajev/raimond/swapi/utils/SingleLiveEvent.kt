@@ -1,4 +1,4 @@
-package com.freetimeprojects.mijiareader.utils
+package lt.mazajev.raimond.swapi.utils
 
 import androidx.annotation.MainThread
 import androidx.lifecycle.LifecycleOwner
