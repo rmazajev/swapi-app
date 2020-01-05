@@ -38,7 +38,9 @@ class CharactersListViewModelTest {
             eyeColor = "eyeColor",
             gender = "gender",
             height = "height",
-            mass = "mass"
+            mass = "mass",
+            skinColor = "skinColor",
+            hairColor = "hairColor"
         )
     )
 

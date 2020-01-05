@@ -3,4 +3,13 @@
     <string name="loading_title">Loading characters list…</string>
     <string name="failed_to_load_message">Failed to load characters…</string>
     <string name="retry_button_title">Retry</string>
+    <string name="name_column_title">Name:</string>
+    <string name="birth_year_column_title">Birth year:</string>
+    <string name="eye_color_column_title">Eye color:</string>
+    <string name="gender_column_title">Gender:</string>
+    <string name="height_column_title">Height:</string>
+    <string name="weight_column_title">Weight:</string>
+    <string name="gender_image_description">Gender image</string>
+    <string name="skin_color_column_title">Skin color:</string>
+    <string name="hair_color_column_title">Hair color:</string>
 </resources>

@@ -8,10 +8,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import dagger.android.support.AndroidSupportInjection
-import lt.mazajev.raimond.swapi.R
+import lt.mazajev.raimond.swapi.charactersList.Character
+import lt.mazajev.raimond.swapi.databinding.CharacterDetailsFragmentBinding
 import javax.inject.Inject
 
 class CharacterDetailsFragment : Fragment() {
+
+    companion object {
+        const val SELECTED_CHARACTER_KEY = "selected_character"
+    }
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -26,12 +31,16 @@ class CharacterDetailsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this, viewModelFactory).get(CharacterDetailsViewModel::class.java)
+        arguments?.getParcelable<Character>(SELECTED_CHARACTER_KEY)?.let {
+            viewModel.initWithParams(it)
+        } ?: throw IllegalStateException("Couldn't find Character argument")
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.character_details_fragment, container, false)
-    }
+    ): View? = CharacterDetailsFragmentBinding.inflate(inflater).apply {
+        lifecycleOwner = viewLifecycleOwner
+        vm = viewModel
+    }.root
 }

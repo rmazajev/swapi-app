@@ -16,6 +16,10 @@ data class CharacterJson(
     val birthYear: String,
     @SerializedName("eye_color")
     val eyeColor: String,
+    @SerializedName("hair_color")
+    val hairColor: String,
+    @SerializedName("skin_color")
+    val skinColor: String,
     val gender: String,
     val height: String,
     val mass: String
@@ -28,6 +32,8 @@ fun PeopleJson.toCharacters() = this.results.map { characterJson ->
         eyeColor = characterJson.eyeColor,
         gender = characterJson.gender,
         height = characterJson.height,
-        mass = characterJson.mass
+        mass = characterJson.mass,
+        hairColor = characterJson.hairColor,
+        skinColor = characterJson.skinColor
     )
 }

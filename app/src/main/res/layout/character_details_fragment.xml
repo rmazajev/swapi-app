@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -12,12 +13,180 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="15dp"
         tools:context=".characterDetails.CharacterDetailsFragment">
 
+        <ImageView
+            android:id="@+id/genderImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/gender_image_description"
+            android:paddingBottom="20dp"
+            android:src="@{vm.getGenderIcon()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_unknown_gender" />
+
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Hello" />
+            android:id="@+id/nameCol"
+            style="@style/ColumnStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/name_column_title"
+            app:layout_constraintEnd_toStartOf="@+id/nameVal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/genderImage" />
+
+        <TextView
+            android:id="@+id/nameVal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{vm.selectedCharacter.name}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/nameCol"
+            app:layout_constraintTop_toBottomOf="@+id/genderImage"
+            tools:text="Some name" />
+
+        <TextView
+            android:id="@+id/birthYearCol"
+            style="@style/ColumnStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/birth_year_column_title"
+            app:layout_constraintEnd_toStartOf="@+id/nameVal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nameCol" />
+
+        <TextView
+            android:id="@+id/birthYearVal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{vm.selectedCharacter.birthYear}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/nameCol"
+            app:layout_constraintTop_toBottomOf="@+id/nameCol"
+            tools:text="19BBY" />
+
+        <TextView
+            android:id="@+id/eyeColorCol"
+            style="@style/ColumnStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/eye_color_column_title"
+            app:layout_constraintEnd_toStartOf="@+id/nameVal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/birthYearCol" />
+
+        <TextView
+            android:id="@+id/eyeColorVal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{vm.selectedCharacter.eyeColor}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/nameCol"
+            app:layout_constraintTop_toBottomOf="@+id/birthYearCol"
+            tools:text="blue" />
+
+        <TextView
+            android:id="@+id/genderCol"
+            style="@style/ColumnStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/gender_column_title"
+            app:layout_constraintEnd_toStartOf="@+id/nameVal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/eyeColorCol" />
+
+        <TextView
+            android:id="@+id/genderVal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{vm.selectedCharacter.gender}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/nameCol"
+            app:layout_constraintTop_toBottomOf="@+id/eyeColorCol"
+            tools:text="male" />
+
+        <TextView
+            android:id="@+id/heightCol"
+            style="@style/ColumnStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/height_column_title"
+            app:layout_constraintEnd_toStartOf="@+id/nameVal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/genderCol" />
+
+        <TextView
+            android:id="@+id/heightVal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{vm.selectedCharacter.height + `cm`}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/nameCol"
+            app:layout_constraintTop_toBottomOf="@+id/genderCol"
+            tools:text="160cm" />
+
+        <TextView
+            android:id="@+id/weightCol"
+            style="@style/ColumnStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/weight_column_title"
+            app:layout_constraintEnd_toStartOf="@+id/nameVal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/heightCol" />
+
+        <TextView
+            android:id="@+id/weightVal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{vm.selectedCharacter.height + `kg`}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/nameCol"
+            app:layout_constraintTop_toBottomOf="@+id/heightCol"
+            tools:text="80kg" />
+
+        <TextView
+            android:id="@+id/skinColorCol"
+            style="@style/ColumnStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/skin_color_column_title"
+            app:layout_constraintEnd_toStartOf="@+id/nameVal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/weightCol" />
+
+        <TextView
+            android:id="@+id/skinColorVal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{vm.selectedCharacter.skinColor}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/nameCol"
+            app:layout_constraintTop_toBottomOf="@+id/weightCol"
+            tools:text="gold" />
+
+        <TextView
+            android:id="@+id/hairColorCol"
+            style="@style/ColumnStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/hair_color_column_title"
+            app:layout_constraintEnd_toStartOf="@+id/nameVal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/skinColorCol" />
+
+        <TextView
+            android:id="@+id/hairColorVal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{vm.selectedCharacter.hairColor}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/nameCol"
+            app:layout_constraintTop_toBottomOf="@+id/skinColorCol"
+            tools:text="blond" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -13,6 +13,7 @@ import com.freetimeprojects.mijiareader.ui.list.CharactersListAdapter
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.characters_list_fragment.*
 import lt.mazajev.raimond.swapi.R
+import lt.mazajev.raimond.swapi.characterDetails.CharacterDetailsFragment.Companion.SELECTED_CHARACTER_KEY
 import lt.mazajev.raimond.swapi.charactersList.CharactersListViewModel.ActionRequest.NavigateToCharacterDetails
 import lt.mazajev.raimond.swapi.databinding.CharactersListFragmentBinding
 import javax.inject.Inject
@@ -50,7 +51,11 @@ class CharactersListFragment : Fragment() {
 
         viewModel.actionRequest.observe(viewLifecycleOwner, Observer { action ->
             when (action) {
-//                is NavigateToCharacterDetails -> findNavController(this).navigate(R.id.action_charactersListFragment_to_characterDetailsFragment)
+                is NavigateToCharacterDetails -> findNavController(this).navigate(
+                    R.id.action_charactersListFragment_to_characterDetailsFragment,
+                    Bundle().apply {
+                        putParcelable(SELECTED_CHARACTER_KEY, action.character)
+                    })
             }
         })
     }
