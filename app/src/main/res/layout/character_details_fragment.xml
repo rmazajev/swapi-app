@@ -7,14 +7,14 @@
 
         <variable
             name="vm"
-            type="lt.mazajev.raimond.swapi.characterDetails.CharacterDetailsViewModel" />
+            type="lt.mazajev.raimond.swapiapp.characterDetails.CharacterDetailsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="15dp"
-        tools:context=".characterDetails.CharacterDetailsFragment">
+        tools:context="lt.mazajev.raimond.swapiapp.characterDetails.CharacterDetailsFragment">
 
         <ImageView
             android:id="@+id/genderImage"

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SWAPI App</string>
+    <string name="app_name">Swapi App</string>
     <string name="loading_title">Loading characters list…</string>
     <string name="failed_to_load_message">Failed to load characters…</string>
     <string name="retry_button_title">Retry</string>

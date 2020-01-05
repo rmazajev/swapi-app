@@ -6,7 +6,7 @@
 
         <variable
             name="vm"
-            type="lt.mazajev.raimond.swapi.charactersList.CharactersListViewModel" />
+            type="lt.mazajev.raimond.swapiapp.charactersList.CharactersListViewModel" />
 
         <import type="android.view.View" />
     </data>

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/charactersListFragment"
-        android:name="lt.mazajev.raimond.swapi.charactersList.CharactersListFragment"
+        android:name="lt.mazajev.raimond.swapiapp.charactersList.CharactersListFragment"
         android:label="charactersListFragment"
         tools:layout="@layout/characters_list_fragment">
         <action
@@ -21,7 +21,7 @@
 
     <fragment
         android:id="@+id/characterDetailsFragment"
-        android:name="lt.mazajev.raimond.swapi.characterDetails.CharacterDetailsFragment"
+        android:name="lt.mazajev.raimond.swapiapp.characterDetails.CharacterDetailsFragment"
         android:label="characterDetailsFragment"
         tools:layout="@layout/character_details_fragment" />
 </navigation>
