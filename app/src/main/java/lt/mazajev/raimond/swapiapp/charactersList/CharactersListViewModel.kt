@@ -4,12 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import lt.mazajev.raimond.swapiapp.utils.SingleLiveEvent
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import lt.mazajev.raimond.swapiapp.api.StarWarsApi
 import lt.mazajev.raimond.swapiapp.di.CONTEXT_IO
+import lt.mazajev.raimond.swapiapp.utils.SingleLiveEvent
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Named
@@ -20,9 +20,7 @@ class CharactersListViewModel @Inject constructor(
     private val starWarsApi: StarWarsApi
 ) : ViewModel() {
 
-    private val _state = MutableLiveData<State>().apply { value =
-        State()
-    }
+    private val _state = MutableLiveData<State>().apply { value = State() }
     val state: LiveData<State> = _state
     val actionRequest =
         SingleLiveEvent<ActionRequest>()

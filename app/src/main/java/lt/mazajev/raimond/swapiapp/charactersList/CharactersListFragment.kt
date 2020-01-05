@@ -10,7 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import dagger.android.support.AndroidSupportInjection
-import kotlinx.android.synthetic.main.characters_list_fragment.*
+import kotlinx.android.synthetic.main.characters_list_fragment.charactersList
 import lt.mazajev.raimond.swapiapp.R
 import lt.mazajev.raimond.swapiapp.characterDetails.CharacterDetailsFragment.Companion.SELECTED_CHARACTER_KEY
 import lt.mazajev.raimond.swapiapp.charactersList.CharactersListViewModel.ActionRequest.NavigateToCharacterDetails
@@ -57,6 +57,5 @@ class CharactersListFragment : Fragment() {
                     })
             }
         })
-
     }
 }

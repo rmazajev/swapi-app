@@ -4,9 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import lt.mazajev.raimond.swapiapp.utils.BindableAdapter
 import lt.mazajev.raimond.swapiapp.BR
 import lt.mazajev.raimond.swapiapp.databinding.CharacterItemBinding
+import lt.mazajev.raimond.swapiapp.utils.BindableAdapter
 
 class CharactersListAdapter(private val viewModel: CharactersListViewModel) :
     ListAdapter<Character, CharacterViewHolder>(COMPARATOR),
