@@ -14,7 +14,7 @@ class ApiModule {
     @Provides
     fun providesStarWarsRetrofitApi(): StarWarsRetrofitApi =
         Retrofit.Builder()
-            .baseUrl("https://swapi.co")
+            .baseUrl("https://swapi.dev/")
             .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
